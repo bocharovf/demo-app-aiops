@@ -1,0 +1,27 @@
+# Assumes an ingress-nginx controller is installed on the cluster
+# (Timeweb Cloud managed k8s does not ship one by default - see
+# k8s/cluster-addons/ingress-nginx.yaml, applied manually). The controller
+# Service is NodePort (no cloud LoadBalancer costs); reach it at
+# <any-worker-external-ip>:<nodePort from `kubectl -n ingress-nginx get svc
+# ingress-nginx-controller`>. Host below uses nip.io wildcard DNS against
+# one worker's external IP so we get real host-based routing without
+# owning a domain - swap for a real domain if you get one.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-bff
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: 201.24.114.118.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-bff
+                port:
+                  number: 8000

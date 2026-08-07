@@ -1,0 +1,86 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-minishop}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-minishop}
+      POSTGRES_DB: ${POSTGRES_DB:-minishop}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-minishop}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  catalog:
+    build: ./services/catalog
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-minishop}:${POSTGRES_PASSWORD:-minishop}@postgres:5432/${POSTGRES_DB:-minishop}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8001:8000"
+
+  order:
+    build: ./services/order
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-minishop}:${POSTGRES_PASSWORD:-minishop}@postgres:5432/${POSTGRES_DB:-minishop}
+      REDIS_URL: redis://redis:6379/0
+      CATALOG_URL: http://catalog:8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      catalog:
+        condition: service_started
+    ports:
+      - "8002:8000"
+
+  notification:
+    build: ./services/notification
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-minishop}:${POSTGRES_PASSWORD:-minishop}@postgres:5432/${POSTGRES_DB:-minishop}
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8003:8000"
+
+  web-bff:
+    build: ./services/web-bff
+    env_file: .env
+    environment:
+      CATALOG_URL: http://catalog:8000
+      ORDER_URL: http://order:8000
+      NOTIFICATION_URL: http://notification:8000
+    depends_on:
+      - catalog
+      - order
+      - notification
+    ports:
+      - "8080:8000"
+
+volumes:
+  pgdata:

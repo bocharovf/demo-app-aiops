@@ -1,0 +1,17 @@
+body { font-family: system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fafafa; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a1a1a; color: #fff; }
+header a { color: #fff; text-decoration: none; margin-left: 1rem; }
+.brand { font-weight: 700; font-size: 1.2rem; margin-left: 0 !important; }
+main { padding: 2rem; max-width: 900px; margin: 0 auto; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background: #fff; }
+.price { font-weight: 700; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #eee; }
+.alert { background: #ffe0e0; border: 1px solid #f5a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+.ok { color: #128a12; font-weight: 700; }
+.fail { color: #c0392b; font-weight: 700; }
+.hint { color: #777; font-size: 0.9rem; }
+form { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+input[type=number] { width: 4rem; }
+button { cursor: pointer; }

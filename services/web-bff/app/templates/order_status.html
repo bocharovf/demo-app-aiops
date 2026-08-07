@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Заказ #{{ order.id }}</h1>
+<p>Статус: <strong>{{ order.status }}</strong></p>
+<p>Сумма: {{ "%.2f"|format(order.total_amount) }} ₽</p>
+<table>
+  <tr><th>product_id</th><th>Кол-во</th><th>Цена</th></tr>
+  {% for item in order['items'] %}
+  <tr>
+    <td>{{ item.product_id }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ "%.2f"|format(item.price_at_order) }} ₽</td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/">К каталогу</a>
+{% endblock %}

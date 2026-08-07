@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Корзина</h1>
+{% if items %}
+<table>
+  <tr><th>Товар</th><th>Кол-во</th><th>Цена</th></tr>
+  {% for item in items %}
+  <tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ "%.2f"|format(item.price) }} ₽</td>
+  </tr>
+  {% endfor %}
+</table>
+<form method="post" action="/cart/checkout">
+  <input type="email" name="user_email" placeholder="email" required>
+  <input type="text" name="user_name" placeholder="имя" required>
+  <button type="submit">Оформить заказ</button>
+</form>
+{% else %}
+<p>Корзина пуста.</p>
+{% endif %}
+{% endblock %}

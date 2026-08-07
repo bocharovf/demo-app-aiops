@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: minishop
+
+resources:
+  - namespace.yaml
+  - postgres/secret.yaml
+  - postgres/statefulset.yaml
+  - postgres/service.yaml
+  - redis/deployment.yaml
+  - redis/service.yaml
+  - catalog/secret.yaml
+  - catalog/configmap.yaml
+  - catalog/deployment.yaml
+  - catalog/service.yaml
+  - order/secret.yaml
+  - order/configmap.yaml
+  - order/deployment.yaml
+  - order/service.yaml
+  - notification/secret.yaml
+  - notification/configmap.yaml
+  - notification/deployment.yaml
+  - notification/service.yaml
+  - web-bff/configmap.yaml
+  - web-bff/deployment.yaml
+  - web-bff/service.yaml
+  - web-bff/ingress.yaml
+
+configMapGenerator:
+  - name: postgres-init-schemas
+    files:
+      - postgres/init-schemas.sql
+
+generatorOptions:
+  disableNameSuffixHash: true

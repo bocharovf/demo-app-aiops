@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: order-config
+data:
+  LOG_LEVEL: INFO
+  CATALOG_URL: http://catalog:8000
+  REDIS_URL: redis://redis:6379/0
+  DB_POOL_SIZE: "5"
+  DB_MAX_OVERFLOW: "5"
+  EXPERIMENT_FLAG: ""

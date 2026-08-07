@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Каталог товаров</h1>
+{% if products %}
+<div class="grid">
+  {% for p in products %}
+  <div class="card">
+    <h3>{{ p.name }}</h3>
+    <p>{{ p.description }}</p>
+    <p class="price">{{ "%.2f"|format(p.price) }} ₽</p>
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="product_id" value="{{ p.id }}">
+      <input type="number" name="quantity" value="1" min="1">
+      <button type="submit">В корзину</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>Каталог пуст или сервис catalog недоступен.</p>
+{% endif %}
+{% endblock %}

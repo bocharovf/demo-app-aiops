@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+# The GitHub Actions deploy job overwrites this whole file at deploy time
+# (see .github/workflows/ci-cd.yml) with real ghcr.io image names/tags.
+# Values below are only used for local `kubectl apply -k` testing against
+# images built by `docker compose build` - do NOT run `kubectl apply -k`
+# against the real cluster with this file as-is, it'll roll every
+# deployment back to the nonexistent "*:local" images. Use `kubectl set
+# image` for one-off fixes against the live cluster instead.
+images:
+  - name: catalog
+    newName: catalog
+    newTag: local
+  - name: order
+    newName: order
+    newTag: local
+  - name: notification
+    newName: notification
+    newTag: local
+  - name: web-bff
+    newName: web-bff
+    newTag: local

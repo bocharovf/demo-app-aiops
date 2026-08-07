@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin / диагностика</h1>
+<table>
+  <tr><th>Сервис</th><th>/health</th><th>/ready</th><th>metrics</th></tr>
+  {% for row in services %}
+  <tr>
+    <td>{{ row.name }}</td>
+    <td class="{{ 'ok' if row.health else 'fail' }}">{{ "OK" if row.health else "FAIL" }}</td>
+    <td class="{{ 'ok' if row.ready else 'fail' }}">{{ "OK" if row.ready else "FAIL" }}</td>
+    <td><a href="{{ row.metrics_url }}" target="_blank">metrics</a></td>
+  </tr>
+  {% endfor %}
+</table>
+<p class="hint">Эта страница дёргает /health и /ready бэкенд-сервисов напрямую из web-bff — удобно, чтобы быстро увидеть,
+кто из сервисов деградировал, без доступа к kubectl.</p>
+{% endblock %}

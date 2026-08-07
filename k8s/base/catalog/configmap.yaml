@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalog-config
+data:
+  LOG_LEVEL: INFO
+  DB_POOL_SIZE: "5"
+  DB_MAX_OVERFLOW: "5"
+  THROTTLE_MODE: ""

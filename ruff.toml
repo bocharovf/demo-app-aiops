@@ -1,0 +1,8 @@
+target-version = "py312"
+
+[lint]
+# B008: FastAPI's `Depends(...)` as a parameter default is the framework's
+# documented dependency-injection pattern, not the footgun bugbear targets.
+# RUF012: SQLAlchemy's `__table_args__ = {...}` class attribute is a
+# declarative-mapping idiom, not mutable shared state.
+extend-ignore = ["B008", "RUF012"]
