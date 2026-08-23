@@ -71,6 +71,13 @@ async def cart_view(request: Request):
     return templates.TemplateResponse(request, "cart.html", {"items": items, "error": error})
 
 
+@app.get("/cart/clear")
+async def cart_clear():
+    response = RedirectResponse(url="/cart", status_code=303)
+    response.delete_cookie(COOKIE_NAME)
+    return response
+
+
 @app.post("/cart/checkout")
 async def cart_checkout(request: Request, user_email: str = Form(...), user_name: str = Form(...)):
     cart = load_cart(request.cookies.get(COOKIE_NAME))
