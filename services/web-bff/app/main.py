@@ -29,7 +29,7 @@ BACKENDS = [
 
 @app.get("/health")
 async def health():
-    return {"status": "ok"}
+    raise RuntimeError("scenario 4.3: unhandled exception baked into a bad release")
 
 
 @app.get("/ready")
