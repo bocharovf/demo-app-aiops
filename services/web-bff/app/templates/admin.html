@@ -6,9 +6,9 @@
   {% for row in services %}
   <tr>
     <td>{{ row.name }}</td>
-    <td class="{{ 'ok' if row.health else 'fail' }}">{{ "OK" if row.health else "FAIL" }}</td>
-    <td class="{{ 'ok' if row.ready else 'fail' }}">{{ "OK" if row.ready else "FAIL" }}</td>
-    <td><a href="{{ row.metrics_url }}" target="_blank">metrics</a></td>
+    <td><span class="badge {{ 'in-stock' if row.health else 'out-of-stock' }}">{{ "OK" if row.health else "FAIL" }}</span></td>
+    <td><span class="badge {{ 'in-stock' if row.ready else 'out-of-stock' }}">{{ "OK" if row.ready else "FAIL" }}</span></td>
+    <td><a href="{{ row.metrics_url }}" target="_blank" class="plain-link">metrics →</a></td>
   </tr>
   {% endfor %}
 </table>

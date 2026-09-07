@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Заказ #{{ order.id }}</h1>
-<p>Статус: <strong>{{ order.status }}</strong></p>
+<p>
+  {% if order.status == 'confirmed' %}
+    <span class="badge in-stock">Подтверждён</span>
+  {% elif order.status == 'cancelled' %}
+    <span class="badge out-of-stock">Отменён</span>
+  {% else %}
+    <span class="badge low-stock">{{ order.status }}</span>
+  {% endif %}
+</p>
 <p>Сумма: {{ "%.2f"|format(order.total_amount) }} ₽</p>
 <table>
   <tr><th>product_id</th><th>Кол-во</th><th>Цена</th></tr>
@@ -13,5 +21,5 @@
   </tr>
   {% endfor %}
 </table>
-<a href="/">К каталогу</a>
+<a href="/" class="plain-link">← К каталогу</a>
 {% endblock %}

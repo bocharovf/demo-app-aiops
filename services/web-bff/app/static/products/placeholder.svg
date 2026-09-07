@@ -1,0 +1,6 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Товар">
+  <rect width="300" height="300" rx="24" fill="#F1EFE8"/>
+  <rect x="85" y="100" width="130" height="100" rx="10" fill="none" stroke="#888780" stroke-width="8"/>
+  <circle cx="115" cy="130" r="12" fill="#888780"/>
+  <path d="M85 190 L135 150 L165 175 L195 145 L215 190 Z" fill="#888780"/>
+</svg>

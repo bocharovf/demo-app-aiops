@@ -1,0 +1,8 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Наушники">
+  <rect width="300" height="300" rx="24" fill="#E1F5EE"/>
+  <path d="M90 165 V140 a60 60 0 0 1 120 0 v25" fill="none" stroke="#0F6E56" stroke-width="10" stroke-linecap="round"/>
+  <rect x="72" y="150" width="34" height="66" rx="17" fill="#0F6E56"/>
+  <rect x="194" y="150" width="34" height="66" rx="17" fill="#0F6E56"/>
+  <circle cx="89" cy="183" r="7" fill="#E1F5EE"/>
+  <circle cx="211" cy="183" r="7" fill="#E1F5EE"/>
+</svg>

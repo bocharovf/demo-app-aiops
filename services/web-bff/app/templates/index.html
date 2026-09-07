@@ -5,14 +5,30 @@
 <div class="grid">
   {% for p in products %}
   <div class="card">
-    <h3>{{ p.name }}</h3>
-    <p>{{ p.description }}</p>
-    <p class="price">{{ "%.2f"|format(p.price) }} ₽</p>
-    <form method="post" action="/cart/add">
-      <input type="hidden" name="product_id" value="{{ p.id }}">
-      <input type="number" name="quantity" value="1" min="1">
-      <button type="submit">В корзину</button>
-    </form>
+    <div class="card-media">
+      <img src="{{ p.image_url or '/static/products/placeholder.svg' }}" alt="{{ p.name }}" loading="lazy">
+    </div>
+    <div class="card-body">
+      <h3>{{ p.name }}</h3>
+      <p class="desc">{{ p.description }}</p>
+      {% if p.available <= 0 %}
+        <span class="badge out-of-stock">Нет в наличии</span>
+      {% elif p.available <= 5 %}
+        <span class="badge low-stock">Осталось {{ p.available }} шт.</span>
+      {% else %}
+        <span class="badge in-stock">В наличии: {{ p.available }} шт.</span>
+      {% endif %}
+      <p class="price">{{ "%.2f"|format(p.price) }} ₽</p>
+      {% if p.available > 0 %}
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="product_id" value="{{ p.id }}">
+        <input type="number" name="quantity" value="1" min="1" max="{{ p.available }}">
+        <button type="submit">В корзину</button>
+      </form>
+      {% else %}
+      <button type="button" disabled>Нет в наличии</button>
+      {% endif %}
+    </div>
   </div>
   {% endfor %}
 </div>

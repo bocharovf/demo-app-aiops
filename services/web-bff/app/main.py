@@ -64,7 +64,14 @@ async def cart_view(request: Request):
     try:
         for product_id, quantity in cart.items():
             product = await clients.get_product(product_id)
-            items.append({"name": product["name"], "price": product["price"], "quantity": quantity})
+            items.append(
+                {
+                    "name": product["name"],
+                    "price": product["price"],
+                    "quantity": quantity,
+                    "image_url": product.get("image_url"),
+                }
+            )
     except httpx.HTTPError as exc:
         logger.error("failed to load product for cart", extra={"error": str(exc)})
         error = "Не удалось загрузить содержимое корзины"

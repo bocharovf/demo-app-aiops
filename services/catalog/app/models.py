@@ -25,6 +25,7 @@ class Product(Base):
     name: Mapped[str]
     description: Mapped[str] = mapped_column(default="")
     price: Mapped[float] = mapped_column(Numeric(10, 2))
+    image_url: Mapped[str | None] = mapped_column(default=None)
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
 
     category: Mapped["Category"] = relationship(back_populates="products")

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Книга">
+  <rect width="300" height="300" rx="24" fill="#E6F1FB"/>
+  <rect x="95" y="70" width="110" height="160" rx="6" fill="#0C447C"/>
+  <rect x="95" y="70" width="110" height="160" rx="6" fill="none" stroke="#042C53" stroke-width="4"/>
+  <line x1="118" y1="70" x2="118" y2="230" stroke="#042C53" stroke-width="4"/>
+  <line x1="140" y1="110" x2="185" y2="110" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round"/>
+  <line x1="140" y1="132" x2="185" y2="132" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round"/>
+  <line x1="140" y1="154" x2="172" y2="154" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round"/>
+</svg>

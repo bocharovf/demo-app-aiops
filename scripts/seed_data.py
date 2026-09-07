@@ -19,11 +19,11 @@ if sys.stdout.encoding.lower() != "utf-8":
 CATALOG_URL = os.environ.get("CATALOG_URL", "http://localhost:8001")
 
 PRODUCTS = [
-    {"category": "Электроника", "name": "Наушники", "description": "Беспроводные, шумоподавление", "price": 49.90, "initial_quantity": 25},
-    {"category": "Электроника", "name": "Powerbank 20000mAh", "description": "Быстрая зарядка", "price": 34.50, "initial_quantity": 15},
-    {"category": "Книги", "name": "Чистый код", "description": "Р. Мартин", "price": 19.90, "initial_quantity": 8},
-    {"category": "Книги", "name": "SRE: Google", "description": "Site Reliability Engineering", "price": 24.90, "initial_quantity": 5},
-    {"category": "Игрушки", "name": "Кубик Рубика", "description": "Классический 3x3", "price": 9.90, "initial_quantity": 40},
+    {"category": "Электроника", "name": "Наушники", "description": "Беспроводные, шумоподавление", "price": 49.90, "initial_quantity": 25, "image_url": "/static/products/headphones.svg"},
+    {"category": "Электроника", "name": "Powerbank 20000mAh", "description": "Быстрая зарядка", "price": 34.50, "initial_quantity": 15, "image_url": "/static/products/powerbank.svg"},
+    {"category": "Книги", "name": "Чистый код", "description": "Р. Мартин", "price": 19.90, "initial_quantity": 8, "image_url": "/static/products/book-purple.svg"},
+    {"category": "Книги", "name": "SRE: Google", "description": "Site Reliability Engineering", "price": 24.90, "initial_quantity": 5, "image_url": "/static/products/book-blue.svg"},
+    {"category": "Игрушки", "name": "Кубик Рубика", "description": "Классический 3x3", "price": 9.90, "initial_quantity": 40, "image_url": "/static/products/cube.svg"},
 ]
 
 
@@ -60,6 +60,7 @@ def main() -> None:
                 "description": product["description"],
                 "price": product["price"],
                 "initial_quantity": product["initial_quantity"],
+                "image_url": product["image_url"],
             },
         )
         print(f"created product #{created['id']}: {created['name']}")

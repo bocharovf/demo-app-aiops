@@ -1,0 +1,6 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Powerbank">
+  <rect width="300" height="300" rx="24" fill="#FAEEDA"/>
+  <rect x="105" y="80" width="90" height="150" rx="14" fill="none" stroke="#854F0B" stroke-width="9"/>
+  <rect x="132" y="66" width="36" height="16" rx="4" fill="#854F0B"/>
+  <path d="M158 108 L128 170 H152 L142 202 L182 138 H156 Z" fill="#EF9F27"/>
+</svg>

@@ -20,6 +20,8 @@ class ProductOut(BaseModel):
     name: str
     description: str
     price: float
+    image_url: str | None = None
+    available: int = 0
 
 
 class ProductCreate(BaseModel):
@@ -27,6 +29,7 @@ class ProductCreate(BaseModel):
     name: str
     description: str = ""
     price: float
+    image_url: str | None = None
     initial_quantity: int = 0
 
 

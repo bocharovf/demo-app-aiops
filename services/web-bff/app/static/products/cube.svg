@@ -1,0 +1,15 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кубик Рубика">
+  <rect width="300" height="300" rx="24" fill="#FAECE7"/>
+  <rect x="75" y="75" width="150" height="150" rx="10" fill="#2C2C2A"/>
+  <g stroke="#2C2C2A" stroke-width="4">
+    <rect x="82" y="82" width="42" height="42" fill="#F0997B"/>
+    <rect x="129" y="82" width="42" height="42" fill="#F7F5F0"/>
+    <rect x="176" y="82" width="42" height="42" fill="#EF9F27"/>
+    <rect x="82" y="129" width="42" height="42" fill="#378ADD"/>
+    <rect x="129" y="129" width="42" height="42" fill="#E24B4A"/>
+    <rect x="176" y="129" width="42" height="42" fill="#F7F5F0"/>
+    <rect x="82" y="176" width="42" height="42" fill="#639922"/>
+    <rect x="129" y="176" width="42" height="42" fill="#378ADD"/>
+    <rect x="176" y="176" width="42" height="42" fill="#EF9F27"/>
+  </g>
+</svg>
