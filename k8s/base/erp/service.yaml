@@ -1,0 +1,8 @@
+# Внешний сервис 1С, управляется вне этого репозитория.
+apiVersion: v1
+kind: Service
+metadata:
+  name: erp
+spec:
+  type: ExternalName
+  externalName: onec-http.accounting.svc.cluster.local

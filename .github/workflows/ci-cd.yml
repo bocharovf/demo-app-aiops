@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install ruff
-      - run: ruff check services/catalog/app services/order/app services/notification/app services/web-bff/app
+      - run: ruff check services/catalog/app services/order/app services/notification/app services/web-bff/app services/inventory-sync/app
 
   build:
     needs: lint
@@ -31,7 +31,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        service: [catalog, order, notification, web-bff]
+        service: [catalog, order, notification, web-bff, inventory-sync]
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v3
@@ -87,6 +87,9 @@ jobs:
               newTag: "${{ github.sha }}"
             - name: web-bff
               newName: ${{ env.IMAGE_BASE }}/web-bff
+              newTag: "${{ github.sha }}"
+            - name: inventory-sync
+              newName: ${{ env.IMAGE_BASE }}/inventory-sync
               newTag: "${{ github.sha }}"
           EOF
 

@@ -26,6 +26,10 @@ resources:
   - web-bff/deployment.yaml
   - web-bff/service.yaml
   - web-bff/ingress.yaml
+  - erp/service.yaml
+  - inventory-sync/secret.yaml
+  - inventory-sync/configmap.yaml
+  - inventory-sync/cronjob.yaml
 
 configMapGenerator:
   - name: postgres-init-schemas

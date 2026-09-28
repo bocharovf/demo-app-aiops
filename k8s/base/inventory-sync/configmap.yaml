@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: inventory-sync-config
+data:
+  LOG_LEVEL: INFO
+  ERP_BASE_URL: http://erp:8080

@@ -24,3 +24,6 @@ images:
   - name: web-bff
     newName: web-bff
     newTag: local
+  - name: inventory-sync
+    newName: inventory-sync
+    newTag: local
