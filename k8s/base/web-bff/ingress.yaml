@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: 201.24.114.118.nip.io
+    - host: shop.openclaw-workshop.ru
       http:
         paths:
           - path: /

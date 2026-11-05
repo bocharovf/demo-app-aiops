@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/version: 1.15.1
+  annotations:
+    k8s.timeweb.cloud/attached-loadbalancer-algo: "roundrobin"
+    k8s.timeweb.cloud/attached-loadbalancer-ssl: "true"
+    k8s.timeweb.cloud/attached-loadbalancer-ssl-fqdn: "shop.openclaw-workshop.ru"
+    k8s.timeweb.cloud/attached-loadbalancer-ssl-type: "lets_encrypt"
+    k8s.timeweb.cloud/attached-loadbalancer-force-ssl: "true"
+spec:
+  type: LoadBalancer
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+  ports:
+    - name: http
+      appProtocol: k8s.timeweb.cloud/proto-http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - name: https
+      appProtocol: k8s.timeweb.cloud/proto-https
+      port: 443
+      protocol: TCP
+      targetPort: https
